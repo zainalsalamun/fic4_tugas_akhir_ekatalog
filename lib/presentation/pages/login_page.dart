@@ -1,10 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:fic4_tugas_akhir_ekatalog/data/models/request/login_model.dart';
+import 'package:fic4_tugas_akhir_ekatalog/presentation/pages/register_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/login/login_bloc.dart';
 import '../../bloc/login/login_event.dart';
 import '../../bloc/login/login_state.dart';
+import '../../data/localsources/auth_local_storage.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -24,11 +28,20 @@ class _LoginPageState extends State<LoginPage> {
     passwordController = TextEditingController();
 
     isLogin();
-    Future.delayed(Duration(seconds: 2), () {});
+    Future.delayed(
+      const Duration(seconds: 2),
+    );
     super.initState();
   }
 
-  void isLogin() {}
+  void isLogin() async {
+    final isTokenExist = await AuthLocalStorage().isTokenExist();
+    if (isTokenExist) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return const HomePage();
+      }));
+    }
+  }
 
   @override
   void dispose() {
@@ -42,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login App'),
+        title: const Text('FIC 4 TUGAS AKHIR'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -112,7 +125,7 @@ class _LoginPageState extends State<LoginPage> {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return const HomePage();
+                      return const RegisterPage();
                     },
                   ),
                 );
@@ -120,7 +133,6 @@ class _LoginPageState extends State<LoginPage> {
               child: const Text(
                 'Belum Punya Akun? Register',
                 style: TextStyle(
-                  color: Colors.blue,
                   fontSize: 16,
                   decoration: TextDecoration.underline,
                 ),
