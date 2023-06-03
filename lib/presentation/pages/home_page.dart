@@ -6,8 +6,6 @@ import 'package:fic4_tugas_akhir_ekatalog/bloc/profile/profile_state.dart';
 import 'package:fic4_tugas_akhir_ekatalog/data/localsources/auth_local_storage.dart';
 import 'package:fic4_tugas_akhir_ekatalog/presentation/pages/login_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../bloc/product/create_product/create_product_event.dart';

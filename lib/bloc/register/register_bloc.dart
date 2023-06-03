@@ -9,7 +9,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<SaveRegisterEvent>((event, emit) async {
       emit(RegisterLoading());
       final result = await datasource.register(event.request);
-      print(result);
       emit(RegisterLoaded(model: result));
     });
   }

@@ -21,7 +21,7 @@ class ProductDatasources {
     return ProductResponseModel.fromJson(response.body);
   }
 
-  Future<ProductResponseModel> getProduct(int id) async {
+  Future<ProductResponseModel> getProductById(int id) async {
     final response = await http.get(
       Uri.parse('https://api.escuelajs.co/api/v1/products/$id'),
     );
@@ -39,11 +39,11 @@ class ProductDatasources {
 
   Future<List<ProductResponseModel>> getAllProduct() async {
     final response = await http.get(
-      Uri.parse('https://api.escuelajs.co/api/v1/products/'),
+      Uri.parse('https://api.escuelajs.co/api/v1/products'),
     );
 
     final result = List<ProductResponseModel>.from(jsonDecode(response.body)
-        .map((x) => ProductResponseModel.fromJson(x))).toList();
+        .map((x) => ProductResponseModel.fromMap(x))).toList();
     return result;
   }
 }

@@ -7,9 +7,13 @@ import 'get_all_product_event.dart';
 class GetAllProductBloc extends Bloc<GetAllProductEvent, GetAllProductState> {
   final ProductDatasources productDatasources;
 
-  GetAllProductBloc(this.productDatasources) : super(GetAllProductInitial()) {
+  GetAllProductBloc(
+    this.productDatasources,
+  ) : super(GetAllProductInitial()) {
     on<DoGetAllProductEvent>((event, emit) async {
       emit(GetAllProductLoading());
+      final result = await productDatasources.getAllProduct();
+      emit(GetAllProductLoaded(listProducts: result));
     });
   }
 }
