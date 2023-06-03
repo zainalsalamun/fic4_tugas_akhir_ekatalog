@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fic4_tugas_akhir_ekatalog">
+        <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="fic4_tugas_akhir_ekatalog"
+        android:label="FIC-EKatalog"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
